@@ -46,17 +46,12 @@ def drawing(x):
 
 # Прыжок по кнопке Space
 isJump = False
-UpCounter = 0
-Jump = Jump_sepcifications(20, -7.8)
-
 
 def jump():
-    global y_p, isJump, UpCounter, Jump
+    global y_p, isJump, Jump
     if Jump.jumpcount > Jump.barriers:
-        y_p -= Jump.jumpcount / 2
-        Jump.jumpcount -= 0.3
+        y_p -= Jump.jumpcount
+        Jump.jumpcount -= 1
     else:
         isJump = False
-        UpCounter = 1
-        if UpCounter == 1:
-            Jump = Jump_sepcifications(10, -23)
+        print(y_p)

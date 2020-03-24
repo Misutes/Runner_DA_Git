@@ -1,10 +1,8 @@
 import pygame
 
-
 import Tasks
 import Character
 import Enemy
-
 
 pygame.init()
 
@@ -20,7 +18,6 @@ clock = pygame.time.Clock()
 
 # Создаем переменную выхода
 Finish = False
-
 
 # Основной цикл игры
 while not Finish:
@@ -43,24 +40,29 @@ while not Finish:
         pass
 
     # Прыжок
-    if Character.UpCounter != 1:
+    if Character.y_p == 382:
         if keys[pygame.K_SPACE] and keys[pygame.K_w]:
             Character.isJump = True
         if Character.isJump:
             Character.jump()
     else:
-        Character.isJump = True
         if keys[pygame.K_SPACE] and keys[pygame.K_s]:
             Character.isJump = True
-            Character.UpCounter = 0
+        if Character.isJump:
             Character.jump()
 
+    if not Character.isJump and Character.y_p == 93:
+        Character.Jump = Character.Jump_sepcifications(8, -26)
+    if not Character.isJump and Character.y_p == 382:
+        Character.Jump = Character.Jump_sepcifications(25, -9)
+
+
     # Движение цели
-    #Enemy.moving()
+    # Enemy.moving()
     # Прыжки цели
-    #Enemy.targerjump()
+    # Enemy.targerjump()
     # Счетчик очков
-    #Tasks.counter(window_width, window_height)
+    # Tasks.counter(window_width, window_height)
     # Создаем шрифт счетчика
     myf = pygame.font.SysFont("Arial", 35, italic=True)
     string = myf.render('Очков:' + str(Tasks.count), 0, (0, 165, 80))
@@ -71,7 +73,7 @@ while not Finish:
     # Генерируем элементы
     window.blit(string, (315, 0))
     window.blit(Character.player, (int(Character.x_p), int(Character.y_p)))
-    #window.blit(Enemy.target, (int(Enemy.x_t), int(Enemy.y_t)))
+    # window.blit(Enemy.target, (int(Enemy.x_t), int(Enemy.y_t)))
     # Обновляем дисплей
     pygame.display.update()
     clock.tick(60)
