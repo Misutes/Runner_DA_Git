@@ -7,7 +7,7 @@ import Enemy
 
 
 pygame.init()
-
+# comment
 # Создаем окно игры и заголовок
 window_width = 800
 window_height = 600
