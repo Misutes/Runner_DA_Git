@@ -7,7 +7,7 @@ import Enemy
 
 
 pygame.init()
-# comment
+
 # Создаем окно игры и заголовок
 window_width = 800
 window_height = 600
@@ -47,10 +47,11 @@ while not Finish:
         if keys[pygame.K_SPACE] and keys[pygame.K_w]:
             Character.isJump = True
         if Character.isJump:
-            Character.jump(20, -7.8, 0.3)
+            Character.jump()
     else:
         Character.isJump = True
         if keys[pygame.K_SPACE] and keys[pygame.K_s]:
+            Character.isJump = True
             Character.UpCounter = 0
             Character.jump()
 

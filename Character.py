@@ -1,5 +1,13 @@
 import pygame
 
+
+class Jump_sepcifications():
+
+    def __init__(self, jumpcount, barriers):
+        self.jumpcount = jumpcount
+        self.barriers = barriers
+
+
 # Создаем игрока
 player_width = 76
 player_height = 101
@@ -37,17 +45,18 @@ def drawing(x):
 
 
 # Прыжок по кнопке Space
-JumpCount = 20
 isJump = False
 UpCounter = 0
+Jump = Jump_sepcifications(20, -7.8)
 
 
-def jump(jump_count, stage, step):
-    global y_p, isJump
-    print('Start:', jump_count, stage, step)
-    if jump_count >= stage:
-        y_p -= jump_count / 2
-        jump_count -= step
-        print('Step:', jump_count, stage, step)
+def jump():
+    global y_p, isJump, UpCounter, Jump
+    if Jump.jumpcount > Jump.barriers:
+        y_p -= Jump.jumpcount / 2
+        Jump.jumpcount -= 0.3
     else:
         isJump = False
+        UpCounter = 1
+        if UpCounter == 1:
+            Jump = Jump_sepcifications(10, -23)
