@@ -3,6 +3,7 @@ import pygame
 import Tasks
 import Character
 import Enemy
+import Barriers
 
 pygame.init()
 
@@ -18,6 +19,7 @@ clock = pygame.time.Clock()
 
 # Создаем переменную выхода
 Finish = False
+
 
 # Основной цикл игры
 while not Finish:
@@ -56,13 +58,10 @@ while not Finish:
     if not Character.isJump and Character.y_p == 382:
         Character.Jump = Character.Jump_sepcifications(25, -9)
 
+    Barriers.cactus.move(img_screen, window_width)
 
-    # Движение цели
-    # Enemy.moving()
-    # Прыжки цели
-    # Enemy.targerjump()
     # Счетчик очков
-    # Tasks.counter(window_width, window_height)
+    """Tasks.counter(window_width, window_height)"""
     # Создаем шрифт счетчика
     myf = pygame.font.SysFont("Arial", 35, italic=True)
     string = myf.render('Очков:' + str(Tasks.count), 0, (0, 165, 80))
@@ -73,7 +72,6 @@ while not Finish:
     # Генерируем элементы
     window.blit(string, (315, 0))
     window.blit(Character.player, (int(Character.x_p), int(Character.y_p)))
-    # window.blit(Enemy.target, (int(Enemy.x_t), int(Enemy.y_t)))
     # Обновляем дисплей
     pygame.display.update()
     clock.tick(60)

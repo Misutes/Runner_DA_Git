@@ -54,4 +54,3 @@ def jump():
         Jump.jumpcount -= 1
     else:
         isJump = False
-        print(y_p)
