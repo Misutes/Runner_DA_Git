@@ -19,6 +19,7 @@ clock = pygame.time.Clock()
 # Создаем переменную выхода
 Finish = False
 
+
 # Основной цикл игры
 while not Finish:
     # Выход по крестику
@@ -38,7 +39,7 @@ while not Finish:
     window.blit(Character.player, (int(Character.x), int(Character.y)))
 
     # Препятствия
-    Barriers.cactus.move(window, window_width)
+    Barriers.barriers(window, window_width)
 
     """
   # Счетчик очков
