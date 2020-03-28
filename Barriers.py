@@ -1,5 +1,6 @@
 import pygame
 
+
 class Barriers():
 
     def __init__(self, barriers_x, barriers_y, barriers_width, barriers_height, barriers_speed):
@@ -11,13 +12,13 @@ class Barriers():
 
     def move(self, surface, window_width):
         if self.barriers_x >= -self.barriers_width:
-            pygame.draw.rect(surface, (255, 0, 255), (self.barriers_x, self.barriers_y, self.barriers_width, self.barriers_height))
+            pygame.draw.rect(surface, (255, 0, 255),
+                             (self.barriers_x, self.barriers_y, self.barriers_width, self.barriers_height))
             self.barriers_x -= self.barriers_speed
         else:
             self.barriers_x = window_width
 
 
-x = 500
-y = 382
+cactus = Barriers(600, 382, 60, 30, 4)
 
-cactus = Barriers(x, y, 30, 50, 4)
+

@@ -27,13 +27,13 @@ img_p_l = [pygame.image.load('Picture/1l.png'), pygame.image.load('Picture/2l.pn
 # Удалаем фон
 player.set_colorkey((0, 0, 0))
 
-# Задаем стартовые ко-ты игрока
+# Задаем стартовые переменные игрока
 x_p = 0
-y_p = 382 # 382 and 87
-
-
-# Рисуем анимацию бега
+y_p = 382
+isJump = False
+is_min_Jump = False
 AnimationCounterPlayer = 0
+Jump = Jump_sepcifications(25, -9)
 
 
 def drawing(x):
@@ -45,12 +45,42 @@ def drawing(x):
 
 
 # Прыжок по кнопке Space
-isJump = False
-
 def jump():
-    global y_p, isJump, Jump
+    global y_p, isJump, is_min_Jump, isJump
     if Jump.jumpcount > Jump.barriers:
         y_p -= Jump.jumpcount
         Jump.jumpcount -= 1
     else:
         isJump = False
+        is_min_Jump = False
+
+
+# Перемещение игрока
+def character_move(keys, window_width):
+    global x_p, y_p, isJump, is_min_Jump, Jump
+    # Движение по горизонтали
+    if keys[pygame.K_a] and x_p > 0:
+        x_p -= 2
+        drawing(img_p_l)
+    elif keys[pygame.K_d] and x_p < (window_width - player_width):
+        x_p += 2
+        drawing(img_p_r)
+    else:
+        pass
+
+    # Прыжок
+    if y_p == 382:
+        if keys[pygame.K_SPACE] and keys[pygame.K_w]:
+            isJump = True
+        if isJump:
+            jump()
+    else:
+        if keys[pygame.K_SPACE] and keys[pygame.K_s]:
+            isJump = True
+        if isJump:
+            jump()
+
+    if not isJump and y_p == 93 and keys[pygame.K_s]:
+        Jump = Jump_sepcifications(8, -26)
+    if not isJump and y_p == 382 and keys[pygame.K_w]:
+        Jump = Jump_sepcifications(25, -9)
