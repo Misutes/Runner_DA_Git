@@ -1,10 +1,10 @@
 import pygame
 
 
-class Jump_sepcifications():
+class Transfer_sepcifications():
 
-    def __init__(self, jumpcount, barriers):
-        self.jumpcount = jumpcount
+    def __init__(self, count, barriers):
+        self.count = count
         self.barriers = barriers
 
 
@@ -28,12 +28,13 @@ img_p_l = [pygame.image.load('Picture/1l.png'), pygame.image.load('Picture/2l.pn
 player.set_colorkey((0, 0, 0))
 
 # Задаем стартовые переменные игрока
-x_p = 0
-y_p = 382
+x = 0
+y = 382
+isLevel = False
 isJump = False
-is_min_Jump = False
 AnimationCounterPlayer = 0
-Jump = Jump_sepcifications(25, -9)
+Level = Transfer_sepcifications(25, -9)
+Jump = Transfer_sepcifications(10, -9)
 
 
 def drawing(x):
@@ -45,42 +46,52 @@ def drawing(x):
 
 
 # Прыжок по кнопке Space
-def jump():
-    global y_p, isJump, is_min_Jump, isJump
-    if Jump.jumpcount > Jump.barriers:
-        y_p -= Jump.jumpcount
-        Jump.jumpcount -= 1
+def jump(qualifier):
+    global y, isLevel, isJump
+    if qualifier.count > qualifier.barriers:
+        y -= qualifier.count
+        qualifier.count -= 1
     else:
+        isLevel = False
         isJump = False
-        is_min_Jump = False
 
 
 # Перемещение игрока
 def character_move(keys, window_width):
-    global x_p, y_p, isJump, is_min_Jump, Jump
+    global x, y, isLevel, isJump, Level, Jump
     # Движение по горизонтали
-    if keys[pygame.K_a] and x_p > 0:
-        x_p -= 2
+    if keys[pygame.K_a] and x > 0:
+        x -= 2
         drawing(img_p_l)
-    elif keys[pygame.K_d] and x_p < (window_width - player_width):
-        x_p += 2
+    elif keys[pygame.K_d] and x < (window_width - player_width):
+        x += 2
         drawing(img_p_r)
     else:
         pass
 
-    # Прыжок
-    if y_p == 382:
-        if keys[pygame.K_SPACE] and keys[pygame.K_w]:
-            isJump = True
-        if isJump:
-            jump()
-    else:
-        if keys[pygame.K_SPACE] and keys[pygame.K_s]:
-            isJump = True
-        if isJump:
-            jump()
+    # Создаем переменные для прыжка
+    if not isLevel and y == 93 and keys[pygame.K_s]:
+        Level = Transfer_sepcifications(8, -26)
+    if not isLevel and y == 382 and keys[pygame.K_w]:
+        Level = Transfer_sepcifications(25, -9)
+    if keys[pygame.K_SPACE] and (not isJump):
+        Jump = Transfer_sepcifications(14, -15)
 
-    if not isJump and y_p == 93 and keys[pygame.K_s]:
-        Jump = Jump_sepcifications(8, -26)
-    if not isJump and y_p == 382 and keys[pygame.K_w]:
-        Jump = Jump_sepcifications(25, -9)
+    # Прыжок
+    if y == 382:
+        if keys[pygame.K_w]:
+            isLevel = True
+        if isLevel:
+            jump(Level)
+    else:
+        if keys[pygame.K_s]:
+            isLevel = True
+        if isLevel:
+            jump(Level)
+
+    if keys[pygame.K_SPACE]:
+        isJump = True
+    if not isLevel and isJump:
+        jump(Jump)
+
+

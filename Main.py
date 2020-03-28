@@ -2,7 +2,6 @@ import pygame
 
 import Tasks
 import Character
-import Enemy
 import Barriers
 
 pygame.init()
@@ -36,18 +35,20 @@ while not Finish:
     # Перемещение игрока
     keys = pygame.key.get_pressed()
     Character.character_move(keys, window_width)
-    window.blit(Character.player, (int(Character.x_p), int(Character.y_p)))
+    window.blit(Character.player, (int(Character.x), int(Character.y)))
 
     # Препятствия
     Barriers.cactus.move(window, window_width)
 
-    # Счетчик очков
-    """Tasks.counter(window_width, window_height)"""
-    # Создаем шрифт счетчика
-    myf = pygame.font.SysFont("Arial", 35, italic=True)
-    string = myf.render('Очков:' + str(Tasks.count), 0, (0, 165, 80))
-    # Генерируем элементы
-    window.blit(string, (315, 0))
+    """
+  # Счетчик очков
+  Tasks.counter(window_width, window_height)
+  # Создаем шрифт счетчика
+  myf = pygame.font.SysFont("Arial", 35, italic=True)
+  string = myf.render('Очков:' + str(Tasks.count), 0, (0, 165, 80))
+  # Генерируем элементы
+  window.blit(string, (315, 0))
+  """
 
     # Обновляем дисплей
     pygame.display.update()
