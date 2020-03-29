@@ -21,24 +21,25 @@ class Barriers():
             self.barriers_speed = random.randint(1, 3)
 
 
-# Генерируем статичные препятствий
+# Генерируем статичные переменные
 window_widht = 800
 bottom_line = 475
 up_line = 183
 
+
 # Генерируем массив препятствий на нижнем уровне
 bottom_cactus_array = []
 for counter in range(random.randint(1, 3)):
-    width = random.randint(20, 40)
-    height = random.randint(50, 60) * (-1)
+    width = random.randint(10, 30)
+    height = random.randint(30, 50) * (-1)
     barriers = Barriers(window_widht + random.randint(0, 100), bottom_line, width, height)
     bottom_cactus_array.append(barriers)
 
 # Генерируем массив препятствий на верхнем уровне
 up_cactus_array = []
-for counter in range(random.randint(1, 3)):
-    width = random.randint(20, 40)
-    height = random.randint(20, 60) * (-1)
+for counter in range(random.randint(2, 4)):
+    width = random.randint(10, 30)
+    height = random.randint(20, 50) * (-1)
     barriers = Barriers(window_widht + random.randint(0, 100), up_line, width, height)
     up_cactus_array.append(barriers)
 

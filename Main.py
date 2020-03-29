@@ -3,6 +3,10 @@ import pygame
 import Tasks
 import Character
 import Barriers
+import Text
+import Menu
+
+
 
 pygame.init()
 
@@ -27,6 +31,13 @@ while not Finish:
         if event.type == pygame.QUIT:
             Finish = True
 
+    # Считываем клавиши
+    keys = pygame.key.get_pressed()
+
+    # Пауза
+    if keys[pygame.K_ESCAPE]:
+        Menu.pause(window, Text.pause, Text.x, Text.y, Text.font_color, Text.font_type, Text.font_size)
+
     # Генерируем задний фон
     window.blit(img_screen, (0, 0))
 
@@ -34,7 +45,6 @@ while not Finish:
     Character.player.blit(Character.img_p_r[0], (0, 0))
 
     # Перемещение игрока
-    keys = pygame.key.get_pressed()
     Character.character_move(keys, window_width)
     window.blit(Character.player, (int(Character.x), int(Character.y)))
 
