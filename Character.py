@@ -35,6 +35,8 @@ isJump = False
 AnimationCounterPlayer = 0
 Level = Transfer_sepcifications(25, -9)
 Jump = Transfer_sepcifications(10, -9)
+character_down_level = 382
+character_up_level = 93
 
 
 def drawing(x):
@@ -93,5 +95,3 @@ def character_move(keys, window_width):
         isJump = True
     if not isLevel and isJump:
         jump(Jump)
-
-

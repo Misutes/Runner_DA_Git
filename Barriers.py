@@ -2,7 +2,7 @@ import pygame
 import random
 
 
-class Barriers():
+class Barriers:
 
     def __init__(self, barriers_x, barriers_y, barriers_width, barriers_height):
         self.barriers_x = barriers_x
@@ -31,7 +31,7 @@ up_line = 183
 bottom_cactus_array = []
 for counter in range(random.randint(1, 3)):
     width = random.randint(10, 30)
-    height = random.randint(30, 50) * (-1)
+    height = random.randint(10, 28) * (-1)
     barriers = Barriers(window_widht + random.randint(0, 100), bottom_line, width, height)
     bottom_cactus_array.append(barriers)
 
@@ -39,7 +39,7 @@ for counter in range(random.randint(1, 3)):
 up_cactus_array = []
 for counter in range(random.randint(2, 4)):
     width = random.randint(10, 30)
-    height = random.randint(20, 50) * (-1)
+    height = random.randint(10, 28) * (-1)
     barriers = Barriers(window_widht + random.randint(0, 100), up_line, width, height)
     up_cactus_array.append(barriers)
 

@@ -7,6 +7,7 @@ def print_text(surface, message, x, y, font_color, font_type, font_size):
     text = font.render(message, True, font_color)
     surface.blit(text, (x, y))
 
+
 # Постоянные для меню паузы
 pause = 'Pleas, press Enter to continue'
 x = 200
